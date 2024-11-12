@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2024 a las 00:14:53
+-- Tiempo de generación: 12-11-2024 a las 18:44:28
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -52,7 +52,8 @@ INSERT INTO `géneros` (`id`, `nombre`) VALUES
 (16, 'Romance'),
 (17, 'Suspenso'),
 (18, 'Terror'),
-(19, 'Novela Psicológica');
+(19, 'Novela Psicológica'),
+(23, 'Drama');
 
 -- --------------------------------------------------------
 
@@ -182,7 +183,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `géneros`
 --
 ALTER TABLE `géneros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `libro`

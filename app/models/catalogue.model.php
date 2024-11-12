@@ -29,7 +29,7 @@ class CatalogueModel {
     }
 
     public function getGenres($sortGenresBy, $orderGenres) {
-        $validSortFields = ['nombre'];
+        $validSortFields = ['nombre', 'id'];
         $validOrders = ['ASC', 'DESC'];
 
         if (!in_array($sortGenresBy, $validSortFields)) {
@@ -59,9 +59,9 @@ class CatalogueModel {
         return $id;
     }
 
-    public function updateGenre($name) {
-        $query = $this->db->prepare('UPDATE géneros SET nombre = ?');
-        $query->execute([$name]);
+    public function updateGenre($name, $id) {
+        $query = $this->db->prepare('UPDATE géneros SET nombre = ? WHERE id = ?');
+        $query->execute([$name, $id]);
 
         $id = $this->db->lastInsertId();
 

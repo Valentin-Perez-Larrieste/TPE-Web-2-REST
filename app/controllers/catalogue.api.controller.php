@@ -23,6 +23,7 @@ class CatalogueApiController {
             return $this->view->response('Parámetro equivocado', 400);
         }
 
+        //Obtengo los libros
         $books = $this->model->getBooks($sortBooksBy, $orderBooks);
 
         $sortGenresBy = isset($req->queryParams['sortGenresBy']) ? $req->queryParams['sortGenresBy'] : 'nombre';
@@ -32,13 +33,20 @@ class CatalogueApiController {
             return $this->view->response('El parámetro "order" debe ser "ASC" o "DESC"', 400);
         }
 
-        if ($sortGenresBy !== 'nombre') {
+        if ($sortGenresBy !== 'nombre' && $sortGenresBy !== 'id') {
             return $this->view->response('Parámetro equivocado', 400);
         }
 
+        //Obtengo los géneros
         $genres = $this->model->getGenres($sortGenresBy, $orderGenres);
 
-        return $this->view->response($books, null, $genres);
+        //Uno ambos en Catálogo
+        $catalogue = [
+            'libros' => $books,
+            'generos' => $genres
+        ];  
+
+        return $this->view->response($catalogue);
     }
 
     public function updateBook($req, $res) {
@@ -82,7 +90,7 @@ class CatalogueApiController {
 
         $name = $req->body->nombre;
 
-        $this->model->updateGenre($name);
+        $this->model->updateGenre($name, $id);
 
         $updatedGenre = $this->model->getGenre($id);
         $this->view->response($updatedGenre);
